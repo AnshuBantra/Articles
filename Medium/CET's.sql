@@ -112,3 +112,28 @@ SELECT  DISTINCT
     FROM    RecursiveBOM
     ORDER BY
             TopLevelProduct;
+
+
+
+WITH
+    EmployeeDetails AS (
+        SELECT	    BusinessEntityID        AS EmployeeID
+                    , LoginID
+                    , JobTitle
+                    , OrganizationLevel     AS ManagerID
+            FROM    HumanResources.Employee
+    ),
+
+    RecursiveOrg AS (   
+        SELECT	    *
+            FROM    EmployeeDetails         AS RLE  -- Root Level Employees
+            WHERE   ManagerID IS NULL
+        UNION ALL
+        SELECT      *
+            FROM    EmployeeDetails         AS DRE  -- Direct Reporting Employees
+                JOIN
+                    RecursiveOrg            AS RO ON DRE.ManagerID = RO.ManagerID
+        )
+-- Main Query --
+SELECT      *
+    FROM    RecursiveOrg;
