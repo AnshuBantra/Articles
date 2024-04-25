@@ -1,6 +1,5 @@
 # A Detailed Guide to Python Formatted Strings Literals (f-strings)
 
-
 Python is known for its simplicity and readability of code. Formatted Strings Literals (f-strings) were introduced in Python 3.6., to provide an elegant and efficient way to format strings by embedding expressions and variables directly into the string literals. In this article, we explore f-strings in depth, demonstrating their usage and explaining their advanced features.
 
 # What Are f-strings?
@@ -9,7 +8,7 @@ Formatted String Literals, often referred to as f-strings, are string literals p
 
 Here’s a simple example:
 
-```
+```python
 name = "Somename"
 age = 45
 greeting = f"Hello, my name is {name} and I am {age} years old."
