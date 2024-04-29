@@ -4,17 +4,15 @@
 
 Structured Query Language (SQL) is a powerful tool used for managing and manipulating relational databases. It provides various features and constructs to simplify complex queries and improve code readability. One such feature is **Common Table Expressions (CTE's)**, which offer several benefits and play a crucial role in managing complex queries, enhancing code readability & efficiency and also maintainability of SQL queries. In this guide, we'll delve into the syntax, benefits, and practical examples of CTE's using the AdventureWorks database as a reference.
 
-
 ### What are Common Table Expressions (CTE's)?
 
 A Common Table Expression, often abbreviated as CTE, is a temporary result set that can be referenced within a SQL statement, including SELECT, INSERT, UPDATE, DELETE, or even another CTE. CTE's provide a way to define a named temporary result set, which can then be used multiple times in the same query. They are particularly useful for breaking down complex queries and logic into more manageable and understandable parts.
 
 > ***"Any damn fool can write code that a computer can understand, the trick is to write code that humans can understand."***
 >
->     Martin Fowler, Software Engineer and Author
+> Martin Fowler, Software Engineer and Author
 
 This statement underscores the importance of writing code that is easy for humans to comprehend. CTE's can aid in achieving this goal by breaking down complex SQL queries into smaller, manageable and more understandable parts.
-
 
 ### **Syntax of CTE's:**
 
@@ -50,7 +48,6 @@ Once defined, you can reference the CTE within the same query or subsequent quer
 
 ---
 
-
 ## **Practical Examples of CTE's:**
 
 Let's explore some common scenarios and practical examples where CTE's can be applied effectively using the AdventureWorks database ([Link to download AdventureWorks database](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)).
@@ -84,10 +81,9 @@ SELECT      *
 
 This recursive CTE retrieves all employees in the organization along with their managers, starting from the top-level employees.
 
-
 ### **2: **Data Transformation and Aggregation**:**
 
-CTE's can help us perform multi-level aggregations. Creating such multi-level aggregations can also help SQL Optimizer to optimise and make queries efficient. CTE's will store the results of aggregations, which can then be ustilised in the main query for final summarization:
+CTE's can help us perform multi-level aggregations. Creating such multi-level aggregations can also help SQL Optimizer to optimise and make queries efficient. CTE's will store the results of aggregations, which can then be utilised in the main query for final summarization:
 
 ```sql
 WITH
@@ -102,7 +98,7 @@ WITH
                 JOIN
                     Production.ProductSubcategory   AS ps   ON pp.ProductSubcategoryID = ps.ProductSubcategoryID
                 JOIN
-                    Production.ProductCategory      AS pc   ON ps.ProductCategoryID = pc.ProductCategoryID      
+                    Production.ProductCategory      AS pc   ON ps.ProductCategoryID = pc.ProductCategoryID    
     ),
 
     ProductSales AS (
@@ -124,10 +120,9 @@ SELECT      ph.Category
 
 This CTE calculates the total sales amount for each category, improving the readability and efficiency of the query.
 
-
 ### **3: **Subquery Replacement**:**
 
-CTE's can help us perform multi-level aggregations. Creating such multi-level aggregations can also help SQL Optimizer to optimise and make queries efficient. CTE's will store the results of aggregations, which can then be ustilised in the main query for final summarization:
+CTE's can help us make the SQL Code base more readable by replacing the Subqueries. CTE's achieve this by creating a hierarchy of code which is ease to follow and understand:
 
 ```sql
 ;WITH
@@ -167,8 +162,6 @@ SELECT      ph.ProductName
 ```
 
 This CTE helps is getting a list of all products which have an above average price in their category.
-
-
 
 **Conclusion:**
 
