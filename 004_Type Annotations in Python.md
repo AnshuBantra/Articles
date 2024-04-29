@@ -34,26 +34,35 @@ In summary, the choice between typed and untyped languages depends on the specif
 Remember, type annotations are a form of documentation and are not enforced at runtime by Python itself. However, type annotations are very useful for tools like type checkers, IDE's and increases the overall readability of code, itself.
 
 ```python
-# to just declare the variable
+# just declare the variable
 <variable_name>: <var_type>  # assign the var later but declare type now
 
-# to declare the variable and assign the value
+# declare the variable and assign a value
 <variable_name>: <var_type> = value
 ```
 
 ```python
 # Basic variable type annotations
+count_1: int
+count_2: int = 0
 
-count: int = 0
-is_day: bool = True
-price: float = 9.99
-mnr_name: str = "Alice"
+is_day_1: bool
+is_day_2: bool = True
 
+price_1: float
+price_2: float = 9.99
+
+str_1: str
+str_2: str = "Python"
+
+# Type annotations while declaring functions
 def func_name(var_a: int, var_b: int) -> tuple[int, int]:
     return (var_a**2, var_b**2)
 ```
 
 ![1714355366283](image/004_TypeAnnotationsinPython/1714355366283.png)
+
+Apart from improving the readability of code, type annotations also help by showing the contex thelp. In Python Idle (as shown in the screenshot) and a lot of other IDE's, when a function defined using type annotations is called, user gets a context help for expectations of the function arguments and also the return type.
 
 ## Benefits of Type Annotations:
 
