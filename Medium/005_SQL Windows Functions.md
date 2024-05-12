@@ -14,9 +14,9 @@ To grasp the mechanics of Window Functions, one must first comprehend the anatom
 -- General Anatomy of Windows Functions
 SELECT
 	Field_Name/s
-	, Aggregate/Windows_Function([Field]) OVER(PARTITION BY [] ORDER BY []) AS Field_Alias
+	, Aggregate/Windows_Function([Field]) OVER(PARTITION BY [Field] ORDER BY [Field]) AS Field_Alias
    FROM
-	TABLE_Name
+	Table_Name
 ```
 
 1. **Over:** This clause helps define the window or set of rows to for the function to operate on.
@@ -24,13 +24,14 @@ SELECT
 3. **Order By**: Defines the order of rows within each partition. This sequence is crucial as it determines the rows included in the window frame.
 4. **Window Frame**: Specifies the range of rows relative to the current row considered by the function. It can be either a physical range (e.g., preceding and following rows) or a logical range (e.g., all rows in the partition).
 
-### Common Window Functions
+### Commonly Used Window Functions
 
 Some of the most commonly used window functions include:
 
 * **ROW_NUMBER()** : Assigns a unique number to each row starting from 1.
 * **RANK()** : Assigns a rank to each row within a partition, with gaps in rank values if there are ties.
 * **DENSE_RANK()** : Similar to RANK(), but without gaps in rank values.
+* **LAG() & LEAD()** : To fetch values from previous & next records, simultaneoiusly.
 * **SUM()** : Calculates the sum of a set of values.
 * **AVG()** : Calculates the average of a set of values.
 * **MIN() / MAX()** : Gets the minimum/maximum value in a set.
@@ -82,9 +83,22 @@ SELECT
 
 ![1715415076567](image/005_SQLWindowsFunctions/1715415076567.png)
 
+#### Windows Functions to Fetch Previous & Next Records:
+
+* in this example we write a simple query to fetch daily sales along with the sales for previous day and next day for analytic comparison. See how Windows Function does not collapse the query result to each department and Avg_Rate is being reproduced for eaxch row in the department.
+
+```sql
+SELECT      OrderDate
+            , LAg(Total_Sales) OVER(ORDER BY OrderDate )  AS Previous_Days_Sales
+            , Total_Sales
+            , LEAD(Total_Sales) OVER(ORDER BY OrderDate ) AS Next_Days_Sales
+    FROM    order_details
+```
+
+
 #### Aggregations with Windows Functions:
 
-* Here we club the aggregate function AVG with Windows Function, to get a view which would enable us to study if there are any particular employees are getting paid over or under the department average rate. See how Windows Function does not collapse the query result to each department and Avg_Rate is being reproduced for eaxch row in the department.
+* Here we use the aggregate function AVG over Windows of Department, to get a view which would enable us to study if there are any particular employees are getting paid over or under the department average rate. See how Windows Function does not collapse the query result to each department and Avg_Rate is being reproduced for eaxch row in the department.
 
 ```sql
 SELECT      Employee_ID
@@ -127,7 +141,6 @@ SELECT      OrderDate
 ![1715417276212](image/005_SQLWindowsFunctions/1715417276212.png)
 
 Very similar to the last example, the ***'OVER'*** clause with assistance from '***ORDEDR BY***' sorts the dataset in ascending order by date. Then a window is created starting at very begining of dataset with help from '***UNBOUNDED PRECEDING***' till the current row in reference and helps the SUM() function in this case to sum up the sales & order count for this window of reference.
-
 
 ### Conclusion:
 
