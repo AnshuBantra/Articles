@@ -85,7 +85,7 @@ SELECT
 
 #### Windows Functions to Fetch Previous & Next Records:
 
-* in this example we write a simple query to fetch daily sales along with the sales for previous day and next day for analytic comparison. See how Windows Function does not collapse the query result to each department and Avg_Rate is being reproduced for eaxch row in the department.
+* In this example we write a simple query to fetch daily sales along with the sales for previous day and next day for analytic comparison. See how Windows Function fetches a `NULL` value for previous day before the first day and next day after the last day in the dataset.
 
 ```sql
 SELECT      OrderDate
@@ -94,7 +94,6 @@ SELECT      OrderDate
             , LEAD(Total_Sales) OVER(ORDER BY OrderDate ) AS Next_Days_Sales
     FROM    order_details
 ```
-
 
 #### Aggregations with Windows Functions:
 
