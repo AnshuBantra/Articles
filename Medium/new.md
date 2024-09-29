@@ -2,7 +2,7 @@
 
 Ladies and Gentlemen, Friends,
 
-Thanks to all of you for taking out this time today to be a part of this celebration, much appriciated. 
+Thanks to all of you, for taking out time today to be a part of this celebration, much appriciated. 
 
 As we gather here today, I stand before you with a heart full of pride and a wallet that's considerably lighter, thanks to the 21 years of raising this incredible young woman standing beside me. Yes, my daughter, Abheeti, is now 21, and I'm still trying to figure out how she managed to age so gracefully while I ended up with these gray, oh sorry, no hair.
 
